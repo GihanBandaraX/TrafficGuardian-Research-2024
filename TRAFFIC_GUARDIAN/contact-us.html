@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Traffic Guardian</title>
+    <link rel="icon" type="image/png" href="image/icon.png">
+    <link rel="stylesheet" href="contact-us.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.0.9/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="toast.css">
+</head>
+<body>
+
+<!--HEADER CONTENT-->
+<header>
+    <div class="header-content">
+        <a href="home.html" class="logo-link">
+            <div class="logo"></div>
+        </a>
+        <nav class="nav-links">
+            <a href="home.html" class="nav-button">Home</a>
+            <a href="services.html" class="nav-button">Services</a>
+            <a href="about-us.html" class="nav-button">About Us</a>
+            <a href="contact-us.html" class="nav-button">Contact Us</a>
+        </nav>
+    </div>
+    
+    <div class="logo-title">
+        <h3>Contact Us</h3>
+    </div>
+</header>
+
+<!--BODY CONTENT-->
+<div class="contact-background">
+    <div class="contact-container">
+        <div class="contact-info">
+            <div class="info-item">
+                <a href="https://maps.app.goo.gl/WUJ6E6FKfYiWpQqJ6" target="_blank" class="icon-link">
+                    <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                </a>
+                <div class="details">
+                    <h3>Location:</h3>
+                    <p>Department of Information Technology,<br>
+                       Sri Lanka Institute of Information Technology,<br>
+                       New Kandy Road,<br>
+                       Malabe, Sri Lanka
+                    </p>
+                </div>
+            </div>
+            <div class="info-item">
+                <a href="mailto:trafficguardian068@gmail.com?subject=Your%20Subject%20Here&body=Your%20message%20here." class="icon-link">
+                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                </a>
+                <div class="details">
+                    <h3>Email:</h3>
+                    <p>trafficguardian068@gmail.com</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <a href="tel:+94710393856" class="icon-link">
+                    <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                </a>
+                <div class="details">
+                    <h3>Mobile:</h3>
+                    <p>+94 71 039 3856</p>
+                </div>
+            </div>
+        </div>
+
+       <!-- Email send form -->
+       <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form method="post" id="contactForm">
+                <div class="form-group">
+                    <input type="text" name="from_name" id="from_name" placeholder="Your Name" required>
+                    <input type="email" name="from_email" id="from_email" placeholder="Your Email" required>
+                </div>
+                <input type="text" name="subject" id="subject" placeholder="Subject" required>
+                <textarea name="message" id="message" placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <div id="response"></div>
+        </div> <!-- End of contact-container -->
+
+    </div>
+
+    <!--FOOTER CONTENT-->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-gif">
+                <img src="image/icon.png">
+            </div>
+            <div class="social-links">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+            <div class="footer-bottom clearfix">
+                <div class="copyright">Copyright &copy; 2024 <strong><span>TRAFFIC GUARDIAN</span></strong>. All Rights Reserved</div>
+                <p>Designed by RESEARCH GROUP R24-037 @ SLIIT</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Up Arrow -->
+    <a href="#" id="scroll-up" class="scroll-up">
+        <i class="bx bxs-up-arrow"></i>
+    </a>
+
+<!--EMAILJS CONFIGRATION FOR SENDING MAILS.-->
+
+    <!-- Include the EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+        (function() {
+            emailjs.init('YdxpAv39QC3NMwlrC'); // EmailJS public key
+        })();
+
+         // Function to show toast message
+         function showToast(message, isSuccess) {
+            const toast = document.createElement('div');
+            toast.className = `toast ${isSuccess ? 'success' : 'error'}`;
+            toast.innerHTML = `
+                <span>${message}</span>
+                <div class="progress-bar"></div>
+            `;
+
+            document.body.appendChild(toast);
+
+            // Animate progress bar
+            setTimeout(() => {
+                toast.querySelector('.progress-bar').style.transition = 'width 2s';
+                toast.querySelector('.progress-bar').style.width = '100%';
+            }, 100);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Attach an event listener to the form
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Retrieve form data
+            const fromEmail = document.getElementById('from_email').value;  // Client's email
+            const fromName = document.getElementById('from_name').value;    // Client's name
+            const subject = document.getElementById('subject').value;       // Subject
+            const message = document.getElementById('message').value;       // Client's message
+
+            // Validate required fields
+            if (!fromName || !fromEmail || !subject || !message) {
+                alert("Please fill in all required fields.");
+                return; 
+            }
+
+            // Show a simple alert indicating the message is being sent
+            alert("Sending your message...");
+
+            // Define the email parameters to pass to EmailJS
+            const emailParams = {
+                from_name: fromName,       // Sender's name
+                from_email: fromEmail,     // Sender's email
+                subject: subject,          // Message subject entered by client
+                message: message,          // Client's message
+                to_email:       'trafficguardian068@gmail.com'  // company email
+            };
+
+            // Use EmailJS to send the form data
+            emailjs.send('service-01', 'template-01', emailParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert("Message sent successfully!");
+                    document.getElementById('contactForm').reset(); 
+                })
+                .catch(function(error) {
+                    console.error('Failed to send message:', error);
+                    alert("Message send failed: " + JSON.stringify(error));
+                });
+        });
+    </script>
+
+</body>
+</html>
+
+<!--HTML CHECKED AND STATUS OK-->

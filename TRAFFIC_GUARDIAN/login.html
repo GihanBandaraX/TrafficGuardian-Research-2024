@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Traffic Guardian</title>
+    <link rel="icon" type="image/png" href="image/icon.png">
+    
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="container">
+        <form id="loginForm" onsubmit="return handleLogin()">
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="text" id="userName" name="userName" required>
+                <small id="userNameError" class="error"></small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required minlength="8" maxlength="20">
+                <small id="passwordError" class="error"></small>
+            </div>
+            <button type="submit">Login</button>
+            
+            <p class="create-account">
+                Don't have an account? <a href="register.html">Create one</a>
+            </p>
+        </form>
+    </div>
+
+    <!-- Toast message for login succeess or failed-->
+    <div id="toast">
+        <div class="icon" id="toastIcon"></div>
+        <span id="toastMessage"></span>
+        <div class="progress-bar"></div>
+    </div>
+
+    <script>
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            // Set the toast message
+            toastMessage.textContent = message;
+
+            // Set the appropriate icon for success or error
+            if (type === 'success') {
+                toastIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M9 19l-7-7 1.41-1.41L9 16.17 20.59 4.59 22 6l-13 13z"/>
+                </svg>`;
+            } else if (type === 'error') {
+                toastIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>`;
+            }
+
+            // Add the correct class based on success or error
+            toast.className = `show ${type}`;
+
+            setTimeout(function() {
+                toast.className = toast.className.replace(`show ${type}`, "");
+            }, 1500); 
+        }
+
+        function handleLogin() {
+            let userName = document.getElementById('userName').value;
+            let password = document.getElementById('password').value;
+            let userNameError = document.getElementById('userNameError');
+            let passwordError = document.getElementById('passwordError');
+    
+            userNameError.textContent = '';
+            passwordError.textContent = '';
+    
+            // Retrieve registered users from local storage
+            let registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+            
+            let user = registeredUsers.find(user => user.userName === userName);
+    
+            if (!user) {
+                showToast('User Name not Registered.', 'error'); 
+                return false;
+            }
+    
+            // Validate password
+            if (user.password !== password) {
+                showToast('Incorrect Password. Try Again', 'error'); 
+                return false;
+            }
+    
+            showToast('Login Success, Welcome ' + userName, 'success'); 
+            setTimeout(() => {
+                window.location.href = 'http://localhost:3000'; // Redirect to MAIN DASHBOARD
+            }, 1500); 
+            return false; 
+        }
+    </script>
+</body>
+</html>
+
+
+<!--HTML & JAVASCRIPT CHECKED AND STATUS OK-->

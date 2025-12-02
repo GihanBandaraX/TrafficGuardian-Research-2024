@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "traffic-guardian-sliit-r-7034c",
+    "staging": "traffic-guardian-sliit-r-7034c"
+  },
+  "targets": {},
+  "etags": {}
+}

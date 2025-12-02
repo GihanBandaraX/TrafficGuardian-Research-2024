@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Traffic Guardian</title>
+    <link rel="icon" type="image/png" href="image/icon.png">
+
+    <link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <form id="registrationForm" onsubmit="return handleSubmit()">
+
+            <h2>User Registration</h2>
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="text" id="userName" name="userName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
+                <small id="emailError" class="error"></small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required minlength="8" maxlength="20">
+                <small id="passwordError" class="error"></small>
+            </div>
+            <div class="form-group">
+                <label for="reEnterPassword">Re-enter Password</label>
+                <input type="password" id="reEnterPassword" name="reEnterPassword" required required minlength="8" maxlength="20">
+                <small id="reEnterPasswordError" class="error"></small>
+            </div>
+            <button type="submit">Register</button>
+
+        </form>
+    </div>
+
+    <!-- Toast message -->
+    <div id="toast">
+        <div class="icon" id="toastIcon"></div>
+        <span id="toastMessage"></span>
+        <div class="progress-bar"></div>
+    </div>
+
+   <!-- User registration and data storage -->
+    <script>
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            // Set the toast message
+            toastMessage.textContent = message;
+
+            // Set the appropriate icon for success or error
+            if (type === 'success') {
+                toastIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M9 19l-7-7 1.41-1.41L9 16.17 20.59 4.59 22 6l-13 13z"/>
+                </svg>`;
+            } else if (type === 'error') {
+                toastIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>`;
+            }
+
+            // Add the correct class based on success or error
+            toast.className = `show ${type}`;
+
+            // Hide the toast after 2 seconds
+            setTimeout(function() {
+                toast.className = toast.className.replace(`show ${type}`, "");
+            }, 2000); 
+        }
+
+        function handleSubmit() {
+            let fullName = document.getElementById('fullName').value;
+            let userName = document.getElementById('userName').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let reEnterPassword = document.getElementById('reEnterPassword').value;
+            let emailError = document.getElementById('emailError');
+            let passwordError = document.getElementById('passwordError');
+            let reEnterPasswordError = document.getElementById('reEnterPasswordError');
+    
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            reEnterPasswordError.textContent = '';
+    
+            // Validate email
+            if (!validateEmail(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                showToast('User Registration Failed', 'error'); // Show red error toast
+                return false;
+            }
+    
+            // Validate password
+            if (!validatePassword(password)) {
+                passwordError.textContent = 'Password must be 8-16 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.';
+                showToast('User Registration Failed', 'error');
+                return false;
+            }
+    
+            // Check if passwords match
+            if (password !== reEnterPassword) {
+                reEnterPasswordError.textContent = 'Passwords Match Failed.';
+                showToast('User Registration Failed', 'error'); 
+                return false;
+            }
+    
+            // Save registered user data in local storage
+            let registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+            registeredUsers.push({ fullName, userName, email, password });
+            localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+    
+            showToast('Registration Successful', 'success'); 
+
+            document.getElementById('registrationForm').reset();
+            
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1500);
+    
+            return false;
+        }
+    
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    
+        function validatePassword(password) {
+            const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+            return re.test(password);
+        }
+    </script>
+    
+</body>
+</html>
+
+
+
+<!--HTML & JAVASCRIPT CHECKED AND STATUS OK-->

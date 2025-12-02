@@ -1,0 +1,401 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    height: 250px; 
+    background: url('image/about-us-header.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.header-content {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.logo {
+    height: 100px;
+    width: 200px;
+    background-image: url('image/TG_LOGO.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.logo-link {
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-button {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-family: 'Tahoma', sans-serif; 
+    font-weight: bold;
+    border: 2.5px solid transparent;
+    text-shadow: 
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -0.5px 0.5px 0 #000,
+    1px 1px 0 #000;
+    border-radius: 10px;
+    color: #f5f5f5; 
+    background-color: transparent;
+    transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    border-color: #2014c1;
+    color: #ffda47; 
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.logo-title {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    padding: 0 20px; 
+}
+
+.logo-title h3 {
+    font-size: 4em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 
+        -2.5px -2.5px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    animation-delay: 0.5s; 
+}
+
+
+/* Keyframes for slide-in and fade-in effects */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.logo-title h3{
+    position: relative;
+    opacity: 0; 
+    animation: fadeIn 2s ease-in-out forwards; 
+}
+
+.logo-title h3 {
+    font-size: 4em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+    margin: 0;
+    text-shadow: 
+        -2.5px -2.5px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    animation-delay: 0.5s; 
+}
+
+.main {
+    padding: 20px;
+}
+
+/* Services Section */
+.services {
+    padding: 20px;
+    background-color: #f9f9f9; 
+    border: 2px solid #0b0d94; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin: 20px; 
+}
+
+.content-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /
+}
+
+.text-content {
+    flex: 1;
+    padding: 2px;
+    text-align: justify; 
+}
+
+.text-content p {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #000000; 
+}
+
+/* About Us Section */
+.about-us {
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    background: rgba(255, 255, 255, 0.8); 
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    opacity: 0; 
+    animation: fadeIn 1s ease-in-out forwards; 
+    animation-delay: 1s; 
+}
+
+/* Animation for text content */
+.text-content p,
+.text-content h3,
+.text-content ul {
+    opacity: 0; 
+    animation: fadeIn 1s ease-in-out forwards; 
+    animation-delay: 1s; 
+}
+
+/* Specific delays for different elements within text-content */
+.text-content p {
+    animation-delay: 1s; 
+}
+
+.text-content h3 {
+    animation-delay: 2s; 
+}
+
+.text-content ul {
+    animation-delay: 3s; 
+}
+
+.content-box {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between; 
+    background-color: #fff; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    overflow: hidden; 
+}
+
+.image-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('image/about-us-left-img.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 1330px; 
+    border-radius: 8px; 
+    opacity: 0; 
+    animation: slideInLeft 2s ease-out forwards; 
+    animation-delay: 1s; 
+}
+
+.text-content {
+    flex: 2; 
+    padding: 20px;
+    opacity: 0; 
+    animation: slideInRight 2s ease-out forwards; 
+    animation-delay: 1s; 
+}
+
+.text-content p {
+    text-align: justify;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1em; 
+    margin-bottom: 10px; 
+}
+
+.text-content h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #162cb9; 
+    font-size: 1.5em; 
+    margin-top: 20px;
+}
+
+.text-content ul {
+    list-style: none; 
+    padding-left: 1.5em;
+    position: relative;
+}
+
+.text-content ul li {
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 1.1em; 
+    margin-bottom: 0.5em;
+    position: relative;
+    padding-left: 1.8em; 
+}
+
+.text-content ul li::before {
+    content: '\f058'; 
+    font-family: 'Font Awesome 5 Free'; 
+    font-weight: 900; 
+    color: #001562; 
+    font-size: 1.2em; 
+    position: absolute;
+    left: 0;
+    top: -0.1em; 
+}
+
+
+/* Footer CSS ALL */
+
+footer {
+    width: 100%; 
+    background-color: #f9f9f9;
+    padding: 1px;
+    box-sizing: border-box; 
+    text-align: center;
+    margin: 0; 
+    position: relative; 
+    bottom: 0; 
+    background: url('image/footercover.jpg') no-repeat center center;
+}
+
+/* Container for footer content */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Adjust social links styling */
+.social-links {
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    color: #333;
+    margin: 0 15px;
+    font-size: 2em; 
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease; 
+}
+
+.social-links a:hover {
+    color: #162cb9; 
+    transform: scale(1.2); 
+}
+
+/* Style for the footer bottom section */
+.footer-bottom {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 10px;
+    display: inline-block; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-bottom .copyright {
+    font-weight: bold;
+}
+
+.footer-bottom a {
+    color: #76e443;
+    text-decoration: none;
+}
+
+.footer-gif {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.footer-gif img {
+    width: 200px;
+    height: 200px;
+}
+
+
+/* Scroll Up Arrow Styles */
+.scroll-up {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #162cb9; 
+    color: white; 
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 22px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.scroll-up:hover {
+    background-color: #3865ed; 
+    transform: scale(1.1); 
+}
+
+/* Arrow Icon */
+.scroll-up i {
+    font-size: 20px;
+}
+
+/*CSS CHECKED AND STATUS OK*/
