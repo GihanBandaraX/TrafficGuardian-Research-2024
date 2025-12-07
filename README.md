@@ -3,6 +3,8 @@
 Traffic Guardian is an advanced Intelligent Traffic Management System using **IoT, AI, and Machine Learning** to enhance urban traffic management, improve road safety, and optimize traffic flow in real-time.
 
 ---
+#### 🔗 Client Website (Preview): [TrafficGuardian](https://traffic-guardian-sliit-r-7034c.web.app/home.html)  
+<sub><p>A static UI prototype to explore our concept and access research documents.</p>
 
 ## 🌐 Overview
 
